@@ -1,0 +1,66 @@
+version: "1"
+
+# Field mapping: EventHub payload field -> OpenTelemetry attribute
+# Supports JSONPath ($.field), Avro field name, or Protobuf field name
+mappings:
+  - source: "$.correlationId"
+    target: "span.trace_id"
+    required: true
+
+  - source: "$.timestamp"
+    target: "span.start_time"
+    required: true
+
+  - source: "$.severity"
+    target: "span.attributes.event.severity"
+    required: false
+    default: "INFO"
+
+  - source: "$.service"
+    target: "resource.service.name"
+    required: true
+
+  - source: "$.operation"
+    target: "span.name"
+    required: true
+
+  - source: "$.duration_ms"
+    target: "span.attributes.duration_ms"
+    required: false
+
+  - source: "$.status_code"
+    target: "span.attributes.http.status_code"
+    required: false
+
+  - source: "$.error"
+    target: "span.status.description"
+    required: false
+
+metrics:
+  - source: "$.duration_ms"
+    name: "eventhub.event.duration"
+    type: "histogram"
+    unit: "ms"
+    description: "Event processing duration"
+
+  - source: "$.payload_size"
+    name: "eventhub.event.payload_size"
+    type: "histogram"
+    unit: "By"
+    description: "Event payload size in bytes"
+
+  - source: "$.error"
+    name: "eventhub.event.errors"
+    type: "counter"
+    condition: "not_null"
+    description: "Total number of errored events"
+
+otlp:
+  endpoint: "${OTLP_ENDPOINT}"
+  headers:
+    "api-key": "${OTLP_API_KEY}"
+  timeout_seconds: 10
+
+azure_monitor:
+  connection_string: "${APPLICATIONINSIGHTS_CONNECTION_STRING}"
+  enabled: false

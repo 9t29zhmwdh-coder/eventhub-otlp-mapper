@@ -1,0 +1,68 @@
+{
+  "resourceMetrics": [
+    {
+      "resource": {
+        "attributes": [
+          { "key": "service.name", "value": { "stringValue": "eventhub-otel-mapper" } }
+        ]
+      },
+      "scopeMetrics": [
+        {
+          "scope": { "name": "eventhub-otel-mapper", "version": "0.1.0" },
+          "metrics": [
+            {
+              "name": "eventhub.event.duration",
+              "description": "Event processing duration",
+              "unit": "ms",
+              "histogram": {
+                "dataPoints": [
+                  {
+                    "startTimeUnixNano": "1750320900000000000",
+                    "timeUnixNano": "1750320960000000000",
+                    "count": 3,
+                    "sum": 4237,
+                    "bucketCounts": [0, 1, 1, 0, 1, 0],
+                    "explicitBounds": [100, 250, 500, 1000, 5000]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "eventhub.event.errors",
+              "description": "Total number of errored events",
+              "unit": "",
+              "sum": {
+                "dataPoints": [
+                  {
+                    "startTimeUnixNano": "1750320900000000000",
+                    "timeUnixNano": "1750320960000000000",
+                    "asInt": 2,
+                    "attributes": []
+                  }
+                ],
+                "isMonotonic": true
+              }
+            },
+            {
+              "name": "eventhub.event.payload_size",
+              "description": "Event payload size in bytes",
+              "unit": "By",
+              "histogram": {
+                "dataPoints": [
+                  {
+                    "startTimeUnixNano": "1750320900000000000",
+                    "timeUnixNano": "1750320960000000000",
+                    "count": 3,
+                    "sum": 3584,
+                    "bucketCounts": [0, 1, 1, 1, 0],
+                    "explicitBounds": [512, 1024, 2048, 4096]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
