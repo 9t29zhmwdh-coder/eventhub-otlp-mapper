@@ -11,10 +11,6 @@
 Nachrichten aus einem Azure EventHub-Namespace konsumieren und als strukturierte OpenTelemetry-Spans und Metriken an Grafana, Application Insights, Prometheus oder ein beliebiges OTLP-kompatibles Backend senden. Unterstuetzt JSON-, Avro- und Protobuf-Payloads mit deklarativem Feld-Mapping per YAML.
 
 [![CI](https://github.com/9t29zhmwdh-coder/eventhub-otlp-mapper/actions/workflows/ci.yml/badge.svg)](https://github.com/9t29zhmwdh-coder/eventhub-otlp-mapper/actions) ![Azure Ready](https://img.shields.io/badge/Azure-Ready-0078d4?logo=microsoftazure&logoColor=white) ![Platform](https://img.shields.io/badge/Platform-Linux_%7C_macOS_%7C_Windows-lightgrey) ![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white) ![AI | Claude Code](https://img.shields.io/badge/AI-Claude_Code-black?logo=anthropic&logoColor=white) ![AI | Copilot](https://img.shields.io/badge/AI-Copilot-black?logo=github&logoColor=white)
-![Platform](https://img.shields.io/badge/Platform-Ubuntu%20%7C%20Windows-lightgrey?logo=linux)
-![License](https://img.shields.io/badge/License-MIT-green)
-[![Azure Ready](https://img.shields.io/badge/Azure-Monitor%20%7C%20App%20Insights-blue?logo=microsoftazure)](docs/azure_integration.md)
-[![CI](https://github.com/9t29zhmwdh-coder/eventhub-otlp-mapper/actions/workflows/ci.yml/badge.svg)](https://github.com/9t29zhmwdh-coder/eventhub-otlp-mapper/actions/workflows/ci.yml)
 
 ---
 
