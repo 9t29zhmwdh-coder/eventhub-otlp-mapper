@@ -14,6 +14,10 @@ Consume events from any Azure EventHub namespace and emit structured OpenTelemet
 
 ---
 
+> 🌱 New here? → [Step-by-step guide for beginners](GETTING_STARTED.md)
+
+---
+
 ## Features
 
 | Feature | Description |
@@ -33,8 +37,6 @@ Consume events from any Azure EventHub namespace and emit structured OpenTelemet
 - Python 3.12+
 - Azure EventHub namespace with a **Listen** policy
 - OTLP-compatible backend (Grafana Cloud, Azure Monitor, local OTel Collector, Jaeger)
-
-> 🌱 New here? → [Step-by-step guide for beginners](GETTING_STARTED.md)
 
 ---
 
