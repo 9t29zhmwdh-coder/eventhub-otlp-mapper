@@ -14,6 +14,10 @@ Consume events from any Azure EventHub namespace and emit structured OpenTelemet
 
 ---
 
+> 🌱 New here? → [Step-by-step guide for beginners](GETTING_STARTED.md)
+
+---
+
 ## Features
 
 | Feature | Description |
