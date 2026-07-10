@@ -14,6 +14,10 @@ Nachrichten aus einem Azure EventHub-Namespace konsumieren und als strukturierte
 
 ---
 
+> 🌱 Neu hier? → [Schritt-für-Schritt-Anleitung für Einsteiger](GETTING_STARTED.md)
+
+---
+
 ## Funktionen
 
 | Funktion | Beschreibung |
