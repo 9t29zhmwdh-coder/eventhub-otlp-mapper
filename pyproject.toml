@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "eventhub-otlp-mapper"
-version = "0.1.4"
+version = "0.1.5"
 description = "Map Azure EventHub messages to OpenTelemetry Traces and Metrics"
 authors = [{ name = "Rafael Yilmaz", email = "rafael.yilmaz@icloud.com" }]
 license = { text = "MIT" }

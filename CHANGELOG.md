@@ -3,6 +3,17 @@
 All notable changes to eventhub-otlp-mapper will be documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.5] - 2026-07-12
+
+### Added
+
+- README/README.de.md: "How it runs" callout, "In practice" paragraph, and "Uninstall/Cleanup" section, which this repo was missing entirely in both languages. Added a "Roadmap" section to README.de.md to match README.md.
+
+### Fixed
+
+- Removed em-dashes/en-dashes from LICENSE and GETTING_STARTED.md (Swiss German orthography rule).
+- Removed ASCII-substituted umlauts from README.de.md ("Unterstuetzt"/"Unterstuetzung" to "Unterstützt"/"Unterstützung", "faehige" to "fähige", "fuer" to "für").
+
 ## [0.1.4] - 2026-07-11
 
 ### Added

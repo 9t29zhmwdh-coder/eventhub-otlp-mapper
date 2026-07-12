@@ -8,9 +8,11 @@
 
 **Azure EventHub-Nachrichten automatisch in OpenTelemetry Traces und Metrics umwandeln. Python, OTLP, keine Vendor-Bindung.**
 
-Nachrichten aus einem Azure EventHub-Namespace konsumieren und als strukturierte OpenTelemetry-Spans und Metriken an Grafana, Application Insights, Prometheus oder ein beliebiges OTLP-kompatibles Backend senden. Unterstuetzt JSON-, Avro- und Protobuf-Payloads mit deklarativem Feld-Mapping per YAML.
+Nachrichten aus einem Azure EventHub-Namespace konsumieren und als strukturierte OpenTelemetry-Spans und Metriken an Grafana, Application Insights, Prometheus oder ein beliebiges OTLP-kompatibles Backend senden. Unterstützt JSON-, Avro- und Protobuf-Payloads mit deklarativem Feld-Mapping per YAML.
 
 [![CI](https://github.com/9t29zhmwdh-coder/eventhub-otlp-mapper/actions/workflows/ci.yml/badge.svg)](https://github.com/9t29zhmwdh-coder/eventhub-otlp-mapper/actions) ![Azure Ready](https://img.shields.io/badge/Azure-Ready-0078d4?logo=microsoftazure&logoColor=white) ![Platform](https://img.shields.io/badge/Platform-Windows_%7C_Ubuntu-lightgrey) ![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white) ![AI | Claude Code](https://img.shields.io/badge/AI-Claude_Code-black?logo=anthropic&logoColor=white) ![AI | Copilot](https://img.shields.io/badge/AI-Copilot-black?logo=github&logoColor=white)
+
+> **So läuft es:** Dies ist ein Kommandozeilen-Prozess, keine Desktop-App und kein Server, mit dem man sich verbindet. `eventhub-otlp-mapper` läuft im Vordergrund (oder unter einem Prozessmanager/systemd-Unit im Produktivbetrieb), liest fortlaufend Events aus deinem EventHub-Namespace und erzeugt daraus OTLP-Spans/Metriken, bis du es stoppst; es gibt keinen Installer und keine grafische Oberfläche.
 
 ---
 
@@ -18,16 +20,18 @@ Nachrichten aus einem Azure EventHub-Namespace konsumieren und als strukturierte
 
 ---
 
+**In der Praxis:** du zeigst den Mapper einmalig auf deinen EventHub-Namespace und einen OTLP-Endpunkt, definierst das Feld-Mapping einmal in `config/mapping.yaml`, und jedes weitere Event wird automatisch zu einem korrekt attributierten OpenTelemetry-Span oder einer Metrik in Grafana/Azure Monitor/Prometheus, ohne Code pro Event.
+
 ## Funktionen
 
 | Funktion | Beschreibung |
 |---|---|
-| Multi-Format-Unterstuetzung | Automatische Erkennung von JSON-, Avro- und Protobuf-Payloads |
+| Multi-Format-Unterstützung | Automatische Erkennung von JSON-, Avro- und Protobuf-Payloads |
 | Deklaratives Mapping | YAML-basiertes Feld-Mapping: EventHub-Feld zu OTel-Span-Attribut oder Resource-Label |
 | OTLP-Export | Traces und Metriken via gRPC OTLP an beliebige kompatible Backends |
-| Azure Monitor | Nativer Application Insights Exporter, KQL-faehige Traces |
+| Azure Monitor | Nativer Application Insights Exporter, KQL-fähige Traces |
 | Schema-Validierung | Pydantic v2 Konfigurationsvalidierung mit klaren Fehlermeldungen |
-| Checkpointing | Azure Blob Storage Checkpoint-Unterstuetzung für Produktiv-Deployments |
+| Checkpointing | Azure Blob Storage Checkpoint-Unterstützung für Produktiv-Deployments |
 | CI getestet | Ubuntu und Windows Matrix mit ruff und pytest |
 
 ---
@@ -76,7 +80,7 @@ mappings:
 
 ## Azure Integration
 
-Siehe [`docs/azure_integration.md`](docs/azure_integration.md) fuer:
+Siehe [`docs/azure_integration.md`](docs/azure_integration.md) für:
 - EventHub-Namespace verbinden
 - Application Insights / Azure Monitor einrichten
 - Grafana Cloud OTLP konfigurieren
@@ -97,6 +101,18 @@ src/eventhub_otel_mapper/
 config/mapping.yaml    Deklaratives Feld-Mapping
 examples/              Beispiel-Events, Traces und Metriken
 ```
+
+---
+
+## Deinstallation / Aufräumen
+
+- `pip uninstall eventhub-otlp-mapper`
+- Lokale `.env`-Datei löschen; sie enthält den EventHub-Connection-String und OTLP-/Application-Insights-Zugangsdaten
+- Bei genutztem Azure-Blob-Storage-Checkpointing den Checkpoint-Container/die Blobs im Storage-Konto manuell entfernen; der Mapper löscht sie beim Beenden oder bei der Deinstallation nicht
+
+## Roadmap
+
+Siehe [ROADMAP.md](ROADMAP.md).
 
 ---
 

@@ -24,7 +24,7 @@ py --version
 **Install Python:**
 
 1. Go to [python.org/downloads](https://www.python.org/downloads/) and download the latest installer.
-2. Run it. On the very first screen, **check the box "Add python.exe to PATH"** at the bottom before clicking Install — this step is easy to miss and is the most common reason `py` isn't recognized afterwards.
+2. Run it. On the very first screen, **check the box "Add python.exe to PATH"** at the bottom before clicking Install; this step is easy to miss and is the most common reason `py` isn't recognized afterwards.
 3. Close and reopen your terminal, then re-run `py --version` to confirm.
 
 ### 3. Download eventhub-otlp-mapper
@@ -58,9 +58,9 @@ notepad .env
 ```
 
 Fill in, at minimum:
-- `EVENTHUB_CONNECTION_STRING` — from your Azure EventHub namespace's shared access policy (must have **Listen** rights)
-- `EVENTHUB_NAME` — the name of the specific EventHub inside that namespace
-- `OTLP_ENDPOINT` — where traces/metrics should be sent (Grafana Cloud, a local OTel Collector, etc.)
+- `EVENTHUB_CONNECTION_STRING`: from your Azure EventHub namespace's shared access policy (must have **Listen** rights)
+- `EVENTHUB_NAME`: the name of the specific EventHub inside that namespace
+- `OTLP_ENDPOINT`: where traces/metrics should be sent (Grafana Cloud, a local OTel Collector, etc.)
 
 Save and close Notepad.
 
@@ -187,7 +187,7 @@ eventhub-otlp-mapper
 
 Once running with valid credentials, `eventhub-otlp-mapper` connects to your EventHub, starts consuming messages, and prints log lines as it maps each event to an OpenTelemetry span and sends it to your configured `OTLP_ENDPOINT`. Check your OTLP backend (Grafana, Application Insights, etc.) for the incoming traces.
 
-The default field mapping lives in `config/mapping.yaml` — open it in any text editor to adjust which fields from your EventHub payloads become which OpenTelemetry attributes (see the "Mapping Example" section in the main [README.md](README.md)).
+The default field mapping lives in `config/mapping.yaml`; open it in any text editor to adjust which fields from your EventHub payloads become which OpenTelemetry attributes (see the "Mapping Example" section in the main [README.md](README.md)).
 
 To stop the mapper, press `Ctrl+C` in the terminal it's running in.
 

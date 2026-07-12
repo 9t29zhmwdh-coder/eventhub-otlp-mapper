@@ -12,11 +12,15 @@ Consume events from any Azure EventHub namespace and emit structured OpenTelemet
 
 [![CI](https://github.com/9t29zhmwdh-coder/eventhub-otlp-mapper/actions/workflows/ci.yml/badge.svg)](https://github.com/9t29zhmwdh-coder/eventhub-otlp-mapper/actions) ![Azure Ready](https://img.shields.io/badge/Azure-Ready-0078d4?logo=microsoftazure&logoColor=white) ![Platform](https://img.shields.io/badge/Platform-Windows_%7C_Ubuntu-lightgrey) ![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white) ![AI | Claude Code](https://img.shields.io/badge/AI-Claude_Code-black?logo=anthropic&logoColor=white) ![AI | Copilot](https://img.shields.io/badge/AI-Copilot-black?logo=github&logoColor=white)
 
+> **How it runs:** This is a command-line consumer process, not a desktop app and not a server you connect to. `eventhub-otlp-mapper` runs in the foreground (or under a process manager/systemd unit for production), continuously reading events from your EventHub namespace and emitting OTLP spans/metrics until you stop it; there is no installer and no GUI.
+
 ---
 
 > 🌱 New here? → [Step-by-step guide for beginners](GETTING_STARTED.md)
 
 ---
+
+**In practice:** you point the mapper at your EventHub namespace and an OTLP endpoint, define field mappings once in `config/mapping.yaml`, and every subsequent event gets turned into a properly-attributed OpenTelemetry span or metric in Grafana/Azure Monitor/Prometheus, no per-event code to write or maintain.
 
 ## Features
 
@@ -105,6 +109,12 @@ examples/              Sample events, traces, and metrics (OTLP JSON)
 ```
 
 ---
+
+## Uninstall / Cleanup
+
+- `pip uninstall eventhub-otlp-mapper`
+- Delete your local `.env` file; it contains the EventHub connection string and OTLP/Application Insights credentials
+- If you used Azure Blob Storage checkpointing, remove the checkpoint container/blobs from your storage account; the mapper does not delete them on exit or uninstall
 
 ## Roadmap
 
