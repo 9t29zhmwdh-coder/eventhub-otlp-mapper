@@ -3,6 +3,15 @@
 All notable changes to eventhub-otlp-mapper will be documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.0.0] - 2026-07-17
+
+First stable release: a real release pipeline now builds a real wheel/sdist
+and attaches it to every GitHub Release, the prerequisite for a 1.0 release
+per this portfolio's own SemVer discipline.
+
+### Added
+- Release workflow (`release.yml`) that builds a wheel and sdist on every `v*` tag push and attaches them to a GitHub Release. Previously there was no packaged distribution; users had to install from source.
+
 ## [0.1.6] - 2026-07-17
 
 ### Changed
