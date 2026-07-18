@@ -4,7 +4,7 @@
   <h1>eventhub-otlp-mapper</h1>
 </div>
 
-🇬🇧 [English Version](README.md)
+[🇬🇧 English Version](README.md)
 
 **Azure EventHub-Nachrichten automatisch in OpenTelemetry Traces und Metrics umwandeln. Python, OTLP, keine Vendor-Bindung.**
 

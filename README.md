@@ -4,7 +4,7 @@
   <h1>eventhub-otlp-mapper</h1>
 </div>
 
-🇩🇪 [Deutsche Version](README.de.md)
+[🇩🇪 Deutsche Version](README.de.md)
 
 **Automatically map Azure EventHub messages to OpenTelemetry Traces and Metrics. Python, OTLP, zero vendor lock-in.**
 
