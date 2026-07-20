@@ -32,4 +32,4 @@ jobs:
         run: ruff check --select E9,F821,F822,F823 --output-format=github .
 
       - name: Test
-        run: pytest tests/ -v --tb=short
+        run: pytest tests/ -v --tb=short --cov=src --cov-report=term-missing
