@@ -57,9 +57,7 @@ def extract_json(data: bytes, mappings: list[FieldMapping]) -> dict[str, Any]:
         value = _extract_jsonpath(payload, mapping.source)
         if value is None:
             if mapping.required and mapping.default is None:
-                raise MissingFieldError(
-                    f"Required field '{mapping.source}' missing in payload"
-                )
+                raise MissingFieldError(f"Required field '{mapping.source}' missing in payload")
             value = mapping.default
         result[mapping.target] = value
     return result
@@ -93,9 +91,7 @@ def extract_avro(data: bytes, mappings: list[FieldMapping]) -> dict[str, Any]:
         field_name = mapping.source.lstrip("$.")
         value = payload.get(field_name, mapping.default)
         if value is None and mapping.required and mapping.default is None:
-            raise MissingFieldError(
-                f"Required Avro field '{field_name}' missing in payload"
-            )
+            raise MissingFieldError(f"Required Avro field '{field_name}' missing in payload")
         result[mapping.target] = value
     return result
 
@@ -104,16 +100,11 @@ def extract_protobuf(
     data: bytes, mappings: list[FieldMapping], descriptor: Any = None
 ) -> dict[str, Any]:
     if descriptor is None:
-        raise SchemaError(
-            "Protobuf descriptor required. Provide a compiled .proto descriptor."
-        )
+        raise SchemaError("Protobuf descriptor required. Provide a compiled .proto descriptor.")
     try:
         message = descriptor()
         message.ParseFromString(data[5:])  # skip 5-byte schema registry header
-        payload = {
-            field.name: getattr(message, field.name)
-            for field in message.DESCRIPTOR.fields
-        }
+        payload = {field.name: getattr(message, field.name) for field in message.DESCRIPTOR.fields}
     except Exception as e:
         raise SchemaError(f"Failed to parse Protobuf payload: {e}") from e
 
@@ -122,9 +113,7 @@ def extract_protobuf(
         field_name = mapping.source.lstrip("$.")
         value = payload.get(field_name, mapping.default)
         if value is None and mapping.required and mapping.default is None:
-            raise MissingFieldError(
-                f"Required Protobuf field '{field_name}' missing"
-            )
+            raise MissingFieldError(f"Required Protobuf field '{field_name}' missing")
         result[mapping.target] = value
     return result
 

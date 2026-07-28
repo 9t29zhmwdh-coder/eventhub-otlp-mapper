@@ -3,6 +3,18 @@
 All notable changes to eventhub-otlp-mapper will be documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.1.0] - 2026-07-28
+
+### Added
+
+- `ruff format --check` in CI, which did not exist. Formatting was therefore never enforced. Enabling it reformatted 4 files, all cosmetic; 20 tests pass unchanged.
+
+### Changed
+
+- `ruff` is pinned to 0.16.0 instead of `>=0.4`. The format check just added would otherwise be able to turn red on unchanged source whenever a new ruff changes what it considers formatted, per `engineering-standards` v0.7.0.
+
+Note on the lint scope: CI runs `--select E9,F821,F822,F823` and `pyproject.toml` configures exactly the same set, so unlike some sibling repositories the configuration here describes what actually runs. The narrow set is a deliberate choice, not an oversight, and is left as is.
+
 ## [1.0.1] - 2026-07-20
 
 ### Changed

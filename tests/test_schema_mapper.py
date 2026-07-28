@@ -59,7 +59,14 @@ def test_extract_json_basic():
 
 def test_extract_json_optional_field():
     cfg = _make_config(
-        [{"source": "$.severity", "target": "span.attributes.event.severity", "required": False, "default": "INFO"}]
+        [
+            {
+                "source": "$.severity",
+                "target": "span.attributes.event.severity",
+                "required": False,
+                "default": "INFO",
+            }
+        ]
     )
     result = extract_json(_json_event(), cfg.mappings)
     assert result["span.attributes.event.severity"] == "INFO"
