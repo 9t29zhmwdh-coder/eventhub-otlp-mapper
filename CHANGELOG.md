@@ -3,6 +3,17 @@
 All notable changes to eventhub-otlp-mapper will be documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.1.1] - 2026-07-28
+
+### Added
+
+- `.github/dependabot.yml`, with grouped weekly updates. The file was missing, and without it there are no version updates at all: repository security alerts only fire for disclosed vulnerabilities, which is how action pins across this portfolio quietly went stale. Follows `engineering-standards` v0.10.0.
+
+### Fixed
+
+- 4 action references used a mutable version tag rather than a commit SHA. A tag can be moved to point at different code after the fact without the workflow file changing; a SHA cannot. All are now pinned, with the version in the comment, per `standards/ci-cd.md` section 2. Pinned at the version that was actually running rather than upgraded, so any major bump arrives as its own reviewable Dependabot PR.
+- `actions/checkout` pins now carry the full version in the comment instead of a bare major, and all workflows use the same SHA.
+
 ## [1.1.0] - 2026-07-28
 
 ### Added
