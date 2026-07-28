@@ -20,9 +20,7 @@ def test_emit_span_ok():
     mock_span = MagicMock()
     mock_tracer = MagicMock()
     mock_tracer.start_as_current_span.return_value.__enter__ = lambda s: mock_span
-    mock_tracer.start_as_current_span.return_value.__exit__ = MagicMock(
-        return_value=False
-    )
+    mock_tracer.start_as_current_span.return_value.__exit__ = MagicMock(return_value=False)
 
     emit_span(_mapped(), mock_tracer)
 
@@ -38,15 +36,14 @@ def test_emit_span_with_error():
     mock_span = MagicMock()
     mock_tracer = MagicMock()
     mock_tracer.start_as_current_span.return_value.__enter__ = lambda s: mock_span
-    mock_tracer.start_as_current_span.return_value.__exit__ = MagicMock(
-        return_value=False
-    )
+    mock_tracer.start_as_current_span.return_value.__exit__ = MagicMock(return_value=False)
 
     emit_span(mapped, mock_tracer)
 
     mock_span.set_status.assert_called_once()
     status_args = mock_span.set_status.call_args.args
     from opentelemetry.trace import StatusCode
+
     assert status_args[0] == StatusCode.ERROR
 
 
@@ -57,9 +54,7 @@ def test_emit_span_invalid_http_status():
     mock_span = MagicMock()
     mock_tracer = MagicMock()
     mock_tracer.start_as_current_span.return_value.__enter__ = lambda s: mock_span
-    mock_tracer.start_as_current_span.return_value.__exit__ = MagicMock(
-        return_value=False
-    )
+    mock_tracer.start_as_current_span.return_value.__exit__ = MagicMock(return_value=False)
 
     emit_span(mapped, mock_tracer)
     mock_tracer.start_as_current_span.assert_called_once()

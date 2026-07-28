@@ -57,9 +57,7 @@ class MetricEmitter:
         attrs = attributes or {}
         for m in metric_mappings:
             field_name = m.source.lstrip("$.")
-            raw_value = mapped.get(f"span.attributes.{field_name}") or mapped.get(
-                m.source
-            )
+            raw_value = mapped.get(f"span.attributes.{field_name}") or mapped.get(m.source)
 
             if m.condition == "not_null" and raw_value is None:
                 continue
