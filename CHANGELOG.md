@@ -3,6 +3,14 @@
 All notable changes to eventhub-otlp-mapper will be documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.1.5] - 2026-07-31
+
+### Changed
+
+- Both READMEs now open with the gap the mapper fills, which is that the hand-written consumer between EventHub and your dashboards has to be maintained forever, rather than restating the conversion it performs. A YAML excerpt shows what configuring it looks like, and a short paragraph says that services able to emit OTLP themselves should be instrumented directly instead.
+
+---
+
 ## [1.1.4] - 2026-07-29
 
 ### Security

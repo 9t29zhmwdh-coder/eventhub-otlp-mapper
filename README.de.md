@@ -6,9 +6,32 @@
 
 [🇬🇧 English Version](README.md)
 
-**Azure EventHub-Nachrichten automatisch in OpenTelemetry Traces und Metrics umwandeln. Python, OTLP, keine Vendor-Bindung.**
+**Bringt das, was ohnehin durch EventHub läuft, nach Grafana, ohne dass du dafür einen Consumer schreibst.**
 
-Nachrichten aus einem Azure EventHub-Namespace konsumieren und als strukturierte OpenTelemetry-Spans und Metriken an Grafana, Application Insights, Prometheus oder ein beliebiges OTLP-kompatibles Backend senden. Unterstützt JSON-, Avro- und Protobuf-Payloads mit deklarativem Feld-Mapping per YAML.
+Deine Events liegen im EventHub. Deine Dashboards liegen woanders. Die übliche
+Brücke ist ein kleiner Consumer, den du selbst schreibst und danach pflegst: er
+läuft, bis eine Payload ein Feld dazubekommt, und jeder neue Event-Typ ist ein
+weiteres Deployment.
+
+Das hier ist dieser Consumer, einmal geschrieben und konfiguriert statt
+programmiert. Du legst das Feld-Mapping in YAML fest, und jedes Event wird zu
+einem sauber attributierten OpenTelemetry-Span oder einer Metrik.
+
+```yaml
+# config/mapping.yaml
+spans:
+  - name: $.operation
+    trace_id: $.correlationId
+    attributes:
+      customer: $.tenant.id
+```
+
+JSON-, Avro- und Protobuf-Payloads, raus an jedes OTLP-Backend: Grafana,
+Application Insights, Prometheus, oder wohin du als nächstes wechselst.
+
+**Nichts für dich, wenn** deine Services selbst OTLP sprechen können.
+Instrumentiere sie direkt und spar dir den Umweg; das hier ist für die Events,
+die dir nicht gehören, aus Systemen, die nie OpenTelemetry sprechen werden.
 
 [![CI](https://github.com/9t29zhmwdh-coder/eventhub-otlp-mapper/actions/workflows/ci.yml/badge.svg)](https://github.com/9t29zhmwdh-coder/eventhub-otlp-mapper/actions) [![CodeQL](https://github.com/9t29zhmwdh-coder/eventhub-otlp-mapper/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/9t29zhmwdh-coder/eventhub-otlp-mapper/security/code-scanning) [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/9t29zhmwdh-coder/eventhub-otlp-mapper/badge)](https://securityscorecards.dev/viewer/?uri=github.com/9t29zhmwdh-coder/eventhub-otlp-mapper) [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/13708/badge)](https://www.bestpractices.dev/projects/13708)
 
