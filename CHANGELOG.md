@@ -3,6 +3,14 @@
 All notable changes to eventhub-otlp-mapper will be documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.1.6] - 2026-07-31
+
+### Fixed
+
+- The supported-versions table in `SECURITY.md` still listed `0.1.x`, a release line that no longer exists. Somebody reporting a vulnerability reads that table first, and it told them the current release was out of scope. It lists `1.1.x`.
+
+---
+
 ## [1.1.5] - 2026-07-31
 
 ### Changed
