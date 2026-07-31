@@ -6,9 +6,31 @@
 
 [🇩🇪 Deutsche Version](README.de.md)
 
-**Automatically map Azure EventHub messages to OpenTelemetry Traces and Metrics. Python, OTLP, zero vendor lock-in.**
+**Gets what is already flowing through EventHub into Grafana, without writing a consumer for it.**
 
-Consume events from any Azure EventHub namespace and emit structured OpenTelemetry spans and metrics to Grafana, Application Insights, Prometheus, or any OTLP-compatible backend. Supports JSON, Avro, and Protobuf payloads with declarative field mapping via YAML.
+Your events are in EventHub. Your dashboards are somewhere else. The usual
+bridge is a small consumer you write yourself, and then maintain: it works
+until a payload gains a field, and every new event type is another deploy.
+
+This is that consumer, written once and configured instead of coded. You
+declare the field mapping in YAML, and every event becomes a properly attributed
+OpenTelemetry span or metric.
+
+```yaml
+# config/mapping.yaml
+spans:
+  - name: $.operation
+    trace_id: $.correlationId
+    attributes:
+      customer: $.tenant.id
+```
+
+JSON, Avro and Protobuf payloads, out to any OTLP backend: Grafana,
+Application Insights, Prometheus, whatever you move to next.
+
+**Not for you if** your services can emit OTLP themselves. Instrument them
+directly and skip the hop; this exists for the events you do not control, from
+systems that will never speak OpenTelemetry.
 
 [![CI](https://github.com/9t29zhmwdh-coder/eventhub-otlp-mapper/actions/workflows/ci.yml/badge.svg)](https://github.com/9t29zhmwdh-coder/eventhub-otlp-mapper/actions) [![CodeQL](https://github.com/9t29zhmwdh-coder/eventhub-otlp-mapper/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/9t29zhmwdh-coder/eventhub-otlp-mapper/security/code-scanning) [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/9t29zhmwdh-coder/eventhub-otlp-mapper/badge)](https://securityscorecards.dev/viewer/?uri=github.com/9t29zhmwdh-coder/eventhub-otlp-mapper) [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/13708/badge)](https://www.bestpractices.dev/projects/13708)
 
