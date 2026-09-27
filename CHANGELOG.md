@@ -3,6 +3,16 @@
 All notable changes to eventhub-otlp-mapper will be documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.1.10] - 2026-09-27
+
+### Security
+
+- Every package the CI and the release build install now comes from `requirements/ci.txt` with its hash checked (`pip install --require-hashes`). Before, the workflows took whatever version the package index served at that moment, which OpenSSF Scorecard marks down under pinned dependencies. The project itself is installed with `--no-deps`, and wheels are built with `--no-isolation` so the build backend is the pinned one rather than a fresh download.
+- CI checks that `requirements/ci.txt` still matches `pyproject.toml`, starting from the committed pins, so a changed dependency cannot slip past the lock. Dependabot keeps the pins current.
+- CI now runs `pip-audit` against the installed dependencies on every push and pull request; before, no step checked them for known vulnerabilities.
+
+---
+
 ## [1.1.9] - 2026-09-27
 
 ### Changed
