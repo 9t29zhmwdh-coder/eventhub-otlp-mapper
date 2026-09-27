@@ -3,6 +3,15 @@
 All notable changes to eventhub-otlp-mapper will be documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.1.11] - 2026-09-27
+
+### Security
+
+- The editable install in CI now runs with `--no-build-isolation`, so the build backend pinned in `requirements/ci.txt` builds it. Before, pip fetched a fresh, unpinned backend into an isolated environment for that one step, which undercut the hash-pinned installs from v1.1.10.
+- Workflows call `python -m pip` rather than `pip`, because `pip.exe` cannot replace itself on Windows when the lock pins a newer pip.
+
+---
+
 ## [1.1.10] - 2026-09-27
 
 ### Security
