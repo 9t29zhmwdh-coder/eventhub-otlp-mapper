@@ -3,6 +3,26 @@
 All notable changes to eventhub-otlp-mapper will be documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.1.8] - 2026-09-27
+
+### Security
+
+- `SECURITY.md` links GitHub's private advisory form in full. The link was missing or relative, so OpenSSF Scorecard found no reporting channel and scored the policy 4 of 10.
+- The supported-versions table named a version line that is no longer current; it now says that the latest release gets security fixes.
+
+### Fixed
+
+- The version was out of step: `pyproject.toml` said 1.1.6 and `__version__` 0.1.0 while the latest release was 1.1.7. Both now say 1.1.8.
+
+### Changed
+
+Dependency updates merged since v1.1.7:
+
+- chore(deps): bump ruff from 0.16.0 to 0.16.1 in the python group (#33)
+- chore(ci): bump the actions group with 3 updates (#34)
+
+---
+
 ## [1.1.7] - 2026-08-04
 
 ### Fixed
