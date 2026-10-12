@@ -3,6 +3,17 @@
 All notable changes to eventhub-otlp-mapper will be documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.1.13] - 2026-10-12
+
+### Changed
+
+Dependency and CI updates merged since v1.1.12, each with green checks:
+
+- chore(ci): bump the actions group with 4 updates
+- chore(deps): bump the python group with 24 updates
+
+---
+
 ## [1.1.12] - 2026-10-11
 
 ### Security
